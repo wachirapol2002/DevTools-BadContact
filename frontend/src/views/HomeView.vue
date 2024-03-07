@@ -1,12 +1,3 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  compatConfig: { MODE: 3 },
-
-})
-</script>
-
 <template>
   <main>
 <div>
