@@ -30,7 +30,9 @@
       <div
         class="bg-light border border-dark rounded-bottom p-3"
         style="width: 80vw; min-height: 200px"
-      ></div>
+      >
+        <button @click="checkHistory" class="btn btn-primary">ตรวจสอบ</button>
+      </div>
     </div>
   </main>
 </template>
