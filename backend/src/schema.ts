@@ -4,11 +4,11 @@ export const users = pgTable('users', {
   id: serial('id').primaryKey(),
   displayName: text('display_name'),
   email: text('email').unique(),
-  passwordHash: text('password_hash'),
+  passwordHash: text('password_hash').notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull()
 })
 
-export const contactReport = pgTable('contact_reports', {
+export const contactReports = pgTable('contact_reports', {
   id: serial('id').primaryKey(),
   phoneNumber: text('phone_number').notNull(),
   targetName: text('target_name'),
