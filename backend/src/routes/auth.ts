@@ -1,8 +1,8 @@
 import { compareSync } from 'bcrypt'
 import { Router } from 'express'
-import { db } from '../clients/drizzle'
+import { db } from '../clients/drizzle.js'
 import { eq } from 'drizzle-orm'
-import { users } from '../schema'
+import { users } from '../schema.js'
 import jwt from 'jsonwebtoken'
 import 'dotenv/config'
 
@@ -36,3 +36,5 @@ authRouter.post('/login', async function login(req, res) {
 
   res.status(200).json({ message: 'login successful', jwt: jwtString })
 })
+
+export default authRouter

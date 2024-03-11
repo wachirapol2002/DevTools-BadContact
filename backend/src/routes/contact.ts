@@ -1,9 +1,9 @@
 // express typings of request and responses
 import { Request, Response, Router } from 'express'
-import { db } from '../clients/drizzle'
-import { contactReports } from '../schema'
+import { db } from '../clients/drizzle.js'
+import { contactReports } from '../schema.js'
 import { eq, like } from 'drizzle-orm'
-import requireJWT from '../middleswares/jwt/requireJWT'
+import requireJWT from '../middleswares/jwt/requireJWT.js'
 
 const contactRouter = Router()
 

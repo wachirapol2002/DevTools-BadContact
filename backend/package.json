@@ -2,13 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "generate": "drizzle-kit generate:pg",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "tsc-watch --onSuccess \"npm run watch\" src/index.ts"
+    "dev": "node --loader ts-node/esm src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +22,7 @@
     "drizzle-kit": "^0.20.14",
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2",
-    "tsc-watch": "^6.0.4",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.2"
   },
   "dependencies": {
