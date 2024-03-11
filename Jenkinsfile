@@ -33,9 +33,10 @@ pipeline {
         stage('Clear Docker Components') {
             steps {
                 script {
-                    sh 'docker stop dev'  
-                    sh 'docker rm dev' 
-                    sh 'docker rmi $DOCKER_IMAGE'
+                    sh 'echo kwai'
+                    // sh 'docker stop dev'  
+                    // sh 'docker rm dev' 
+                    // sh 'docker rmi $DOCKER_IMAGE'
                     // sh 'docker system prune -af'
                 }
             }
@@ -43,7 +44,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'docker pull $DOCKER_IMAGE'
+                    // sh 'docker pull $DOCKER_IMAGE'
                     //i dont care
                     sh 'docker run -d --name dev --net=my-network -p 8085:8085 -p 8086:8086 -e DATABASE_URL="postgresql://admin:Carbon-Rants-Dictation-Breeches-Spied-Nullify-Flagpole-Twitch4-Wrath-Liberty-Outboard@devdb:5432/BadContactDB" -e JWT_SECRET="JJIsj8fyPRUvDTGWW/IDH5/vw31DAxmGU3k6+zNIXpU=" $DOCKER_IMAGE'
                 }
