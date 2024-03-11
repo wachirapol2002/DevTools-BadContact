@@ -18,9 +18,9 @@ contactRouter.get<null, any, any, { phoneNumber: string }>(
       })
       .execute()
 
-    if (contacts.length === 0) {
-      return res.status(404).json({ message: 'Contact not found' })
-    }
+    // if (contacts.length === 0) {
+    //   return res.status(404).json({ message: 'Contact not found' })
+    // }
     res.json(contacts)
   }
 )

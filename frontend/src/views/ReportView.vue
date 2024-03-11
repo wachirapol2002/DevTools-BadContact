@@ -21,7 +21,7 @@
             <div class="col-9">
               <input
                 class="form-control"
-                type="te"
+                type="tel"
                 id="phoneNumber"
                 name="phoneNumber"
                 required
@@ -72,6 +72,7 @@
                 id="otherReportType"
                 name="otherReportType"
                 placeholder="กรุณาระบุหัวข้อรายงาน"
+                maxlength="30"
                 v-model="otherReportType"
               />
             </div>
@@ -120,6 +121,10 @@ export default {
   },
   methods: {
     submit() {
+      if (!this.phoneNumber) {
+        alert('กรุณากรอก เบอร์โทรที่ต้องการแจ้ง')
+        return
+      }
       let reportReason: string
       if (this.selectedReportType == 'other') {
         if (this.otherReportType == '') {
@@ -149,6 +154,11 @@ export default {
           alert(err)
           console.log(err)
         })
+    }
+  },
+  mounted() {
+    if (!this.$cookies.isKey('account')) {
+      this.$router.push('/login')
     }
   }
 }

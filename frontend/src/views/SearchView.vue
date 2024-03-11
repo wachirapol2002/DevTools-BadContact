@@ -20,6 +20,7 @@
           <button @click="searchReport" class="btn btn-primary">ตรวจสอบ</button>
         </div>
       </div>
+
       <div
         class="bg-dark rounded-top text-white"
         :class="center"
@@ -28,51 +29,36 @@
         การโดนรายงาน
       </div>
       <div
-        class="bg-light border border-dark rounded-bottom p-3"
+        class="bg-light border border-dark rounded-bottom p-3 mb-5 overflow-x-auto"
         style="width: 80vw; min-height: 200px"
       >
-        <table class="table">
+        <table class="table table-striped">
           <thead>
             <tr>
-              <th>เบอร์โทร</th>
-              <th>บุคคลที่คาดว่าเป็นเจ้าของเบอร์</th>
-              <th>รายการที่แจ้ง</th>
-              <th>บุคคลที่แจ้ง</th>
-              <th>เวลาที่แจ้ง</th>
+              <th class="col-3">เบอร์โทร</th>
+              <th class="col-3">บุคคลที่คาดว่าเป็นเจ้าของเบอร์</th>
+              <th class="col-4">รายการที่แจ้ง</th>
+              <th class="col-2">เวลาที่แจ้ง</th>
             </tr>
           </thead>
           <tbody>
-            <!-- <tr v-for="(item, index) in phoneReport" :key="index">
+            <tr v-for="(item, index) in phoneReport" :key="index">
               <td>{{ item.phoneNumber }}</td>
-              <td>{{ item.ownerPerson }}</td>
-              <td>{{ item.reportType }}</td>
-              <td>{{ item.reportPerson }}</td>
-              <td>{{ item.reportTime }}</td>
-            </tr> -->
-            <!-- test -->
-            <tr>
-              <td>099999999</td>
-              <td>Superman</td>
-              <td>เก่งเกิน</td>
-              <td>Batman</td>
-              <td>now</td>
+              <td>{{ item.targetName }}</td>
+              <td>{{ item.notes }}</td>
+              <td>{{ dayjs(item.createdAt).format('DD-MM-YYYY HH:MM') }}</td>
             </tr>
-            <tr>
-              <td>199999999</td>
-              <td>Batman</td>
-              <td>รวยเกิน</td>
-              <td>Superman</td>
-              <td>1 min</td>
-            </tr>
-            <!-- test -->
           </tbody>
         </table>
+        <h1 class="text-center mt-3" v-if="phoneReport.length === 0">ไม่พบข้อมูล</h1>
       </div>
     </div>
   </main>
 </template>
 
 <script lang="ts">
+import { axiosInstance } from '../client/axios.js'
+import dayjs from 'dayjs'
 export default {
   name: 'SearchPage',
   data() {
@@ -103,11 +89,17 @@ export default {
     }
   },
   methods: {
+    dayjs,
     searchReport() {
       axiosInstance
-        .post('/contact/', data)
-        .then(() => {
-          alert('Report Success')
+        .get('/contact/', {
+          params: {
+            phoneNumber: this.phoneNumber
+          }
+        })
+        .then((res) => {
+          this.phoneReport = res.data
+          console.log(res.data)
         })
         .catch((err) => {
           alert(err)
@@ -117,6 +109,9 @@ export default {
   },
   mounted() {
     this.searchReport()
+    if (!this.$cookies.isKey('account')) {
+      this.$router.push('/login')
+    }
   }
 }
 </script>

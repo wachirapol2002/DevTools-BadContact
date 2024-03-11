@@ -95,6 +95,10 @@ export default {
   },
   methods: {
     submit() {
+      if (!this.email || !this.password) {
+        alert('Please fill in all fields.')
+        return
+      }
       const data = {
         email: this.email,
         password: this.password
@@ -118,29 +122,6 @@ export default {
           alert(err)
           console.log(err)
         })
-
-      // const data = {
-      //   email: this.email,
-      //   password: this.password
-      // }
-      // axiosInstance
-      //   .post('/auth/login/', data)
-      //   .then((res) => {
-      //     const account = {
-      //       displayName: res.data.account.displayName,
-      //       permission: res.data.account.permission,
-      //       firstname: res.data.account.firstname,
-      //       lastname: res.data.account.lastname,
-      //       email: res.data.account.email,
-      //       phone: res.data.account.phone
-      //     }
-      //     this.$cookies.set('account', account)
-      //     alert('Login Success')
-      //     this.$router.push({ path: '/' })
-      //   })
-      //   .catch((error) => {
-      //     this.error = error.response.data
-      //   })
     }
   }
 }
