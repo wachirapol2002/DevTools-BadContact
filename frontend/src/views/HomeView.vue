@@ -6,7 +6,7 @@
     >
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-4">แอพรายงานหมายเลขโทรศัพท์</h1>
+          <h1 class="display-4">เว็บรายงานหมายเลขโทรศัพท์</h1>
           <p class="lead">รายงานหมายเลขโทรศัพท์ที่ไม่พึงประสงค์</p>
           <router-link to="/register" class="btn btn-primary btn-lg">ลงทะเบียน</router-link>
         </div>
