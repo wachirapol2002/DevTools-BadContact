@@ -104,11 +104,15 @@ export default {
   },
   methods: {
     searchReport() {
-      // โค้ดดึงข้อมูลจาก SQL ตรงนี้
-      // ตัวอย่าง:
-      // axios.get('.......').then(response => {
-      //   this.phoneReport = response.data;
-      // });
+      axiosInstance
+        .post('/contact/', data)
+        .then(() => {
+          alert('Report Success')
+        })
+        .catch((err) => {
+          alert(err)
+          console.log(err)
+        })
     }
   },
   mounted() {

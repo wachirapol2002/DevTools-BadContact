@@ -101,8 +101,13 @@ export default {
       }
       axiosInstance
         .post('/auth/login', data)
-        .then(() => {
-          this.$cookies.set('account', data)
+        .then((res) => {
+          const account = {
+            id: res.data.account.id,
+            email: res.data.account.email,
+            displayName: res.data.account.displayName
+          }
+          this.$cookies.set('account', account)
           this.$router.push({ path: '/report' })
           alert('Sign In Success')
           setTimeout(() => {

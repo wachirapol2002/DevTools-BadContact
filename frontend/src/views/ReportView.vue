@@ -86,7 +86,7 @@
 </template>
 
 <script lang="ts">
-import axios from 'axios'
+import { axiosInstance } from '../client/axios.js'
 export default {
   name: 'ReportPage',
   data() {
@@ -120,20 +120,34 @@ export default {
   },
   methods: {
     submit() {
-      const data = {
-        user: this.user,
-        phoneNumber: this.phoneNumber,
-        selectedReportType: this.selectedReportType,
-        otherReportType: this.otherReportType
+      let reportReason: string
+      if (this.selectedReportType == 'other') {
+        if (this.otherReportType == '') {
+          alert('กรุณาระบุหัวข้อรายงาน')
+          return
+        } else {
+          reportReason = this.otherReportType
+        }
+      } else if (this.selectedReportType == '') {
+        alert('กรุณาเลือกหัวข้อรายงาน')
+        return
+      } else {
+        reportReason = this.selectedReportType
       }
-      axios
-        .post('http://localhost:3000/user/signup', data)
+      const data = {
+        reporterId: this.$cookies.get('account').id,
+        phoneNumber: this.phoneNumber,
+        targetName: this.name,
+        notes: reportReason
+      }
+      axiosInstance
+        .post('/contact/', data)
         .then(() => {
-          this.$router.push({ path: '/login' })
-          alert('Sign up Success')
+          alert('Report Success')
         })
         .catch((err) => {
-          alert(err.response.data.details.message)
+          alert(err)
+          console.log(err)
         })
     }
   }

@@ -29,12 +29,14 @@ authRouter.post('/login', async function login(req, res) {
     return
   }
 
-  const jwtString = jwt.sign(
-    { userId: user.id, displayName: user.displayName },
-    process.env.JWT_SECRET!
-  )
-
-  res.cookie('jwt', jwtString).status(200).json({ message: 'login successful', jwt: jwtString })
+  res.status(201).json({
+    message: 'login successful',
+    account: {
+      id: user.id,
+      email: user.email,
+      displayName: user.displayName
+    }
+  })
 })
 
 export default authRouter

@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost:8000/login">ระบบรายงาน</a>
+        <a class="navbar-brand" href="/login">ระบบรายงาน</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -25,7 +25,6 @@
           </ul>
         </div>
         <div v-if="this.$cookies.isKey('account')">
-          <!-- <div>DisplayName: {{ this.$cookies.isKey('account').displayName }}</div> -->
           <button @click="logout" class="btn btn-danger">Logout</button>
         </div>
       </div>

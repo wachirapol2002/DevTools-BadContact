@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import 'dotenv/config'
 
 const requireJWT: RequestHandler = (req, res, next) => {
-  const token = req.cookies.access_token
+  const token = req.cookies.jwt
   if (!token) {
     return res.sendStatus(403)
   }

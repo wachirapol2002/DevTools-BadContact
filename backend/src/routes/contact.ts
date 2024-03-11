@@ -3,6 +3,7 @@ import { Request, Response, Router } from 'express'
 import { db } from '../clients/drizzle.js'
 import { contactReports } from '../schema.js'
 import { eq, like } from 'drizzle-orm'
+import { decode } from 'jsonwebtoken'
 import requireJWT from '../middleswares/jwt/requireJWT.js'
 
 const contactRouter = Router()
@@ -34,11 +35,14 @@ contactRouter.get('/:id', async function findContact(req, res) {
   res.json(contact)
 })
 
-contactRouter.post('/', requireJWT, async function createContact(req, res) {
-  const { phoneNumber, targetName, notes, reporter } = req.body
+contactRouter.post('/', async function createContact(req, res) {
+  const { phoneNumber, targetName, notes, reporterId } = req.body
+  if (!reporterId) {
+    return res.status(400).json({ message: 'ReporterId is required' })
+  }
   const contactReport = await db
     .insert(contactReports)
-    .values({ phoneNumber, targetName, notes, reporter })
+    .values({ phoneNumber, targetName, notes, reporter: reporterId })
     .execute()
   res.status(201).json(contactReport)
 })

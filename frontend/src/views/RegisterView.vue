@@ -126,9 +126,9 @@ export default {
   methods: {
     submit() {
       const data = {
-        email: 'ww@www.com',
-        password: '123',
-        displayName: 'www'
+        email: this.email,
+        password: this.password,
+        displayName: this.displayName
       }
       axiosInstance
         .post('/user/', data)
@@ -143,16 +143,6 @@ export default {
           alert(err)
           console.log(err)
         })
-
-      // axiosInstance
-      //   .post('/user/', data)
-      //   .then(() => {
-      //     alert('Sign up Success')
-      //     this.$router.push({ path: '/login' })
-      //   })
-      //   .catch((err) => {
-      //     alert(err)
-      //   })
     }
   }
 }
