@@ -46,7 +46,7 @@ pipeline {
                 script {
                     sh 'docker pull $DOCKER_IMAGE'
                     //i dont care
-                    sh 'docker run -d --name dev --net=my-network -p 8085:8085 -p 8086:8086 -e DATABASE_URL="postgresql://admin:Carbon-Rants-Dictation-Breeches-Spied-Nullify-Flagpole-Twitch4-Wrath-Liberty-Outboard@devdb:5432/BadContactDB" -e JWT_SECRET="JJIsj8fyPRUvDTGWW/IDH5/vw31DAxmGU3k6+zNIXpU=" $DOCKER_IMAGE'
+                    sh 'docker run -d --name dev --net=my-network -p 8085:8085 -p 8086:8086 -e DATABASE_URL="postgresql://postgres:Carbon-Rants-Dictation-Breeches-Spied-Nullify-Flagpole-Twitch4-Wrath-Liberty-Outboard@34.87.73.159:8087/BadContactDB" -e JWT_SECRET="JJIsj8fyPRUvDTGWW/IDH5/vw31DAxmGU3k6+zNIXpU=" $DOCKER_IMAGE'
                 }
             }
         }
