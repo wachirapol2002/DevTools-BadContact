@@ -125,6 +125,14 @@ export default {
   },
   methods: {
     submit() {
+      if (!this.email || !this.displayName || !this.password || !this.confirmPassword) {
+        alert('Please fill in all fields.')
+        return
+      }
+      if (this.password !== this.confirmPassword) {
+        alert('Password and Confirm Password do not match.')
+        return
+      }
       const data = {
         email: this.email,
         password: this.password,
@@ -143,6 +151,11 @@ export default {
           alert(err)
           console.log(err)
         })
+    }
+  },
+  mounted() {
+    if (this.$cookies.isKey('account')) {
+      this.$router.push('/')
     }
   }
 }

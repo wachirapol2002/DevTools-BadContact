@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/login">ระบบรายงาน</a>
+        <a class="navbar-brand" href="/">ระบบรายงาน</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -24,7 +24,9 @@
             </li>
           </ul>
         </div>
-        <div v-if="this.$cookies.isKey('account')">
+
+        <div v-if="this.$cookies.isKey('account')" class="d-flex align-items-center">
+          <div class="text-light fw-bold mx-3">{{ this.$cookies.get('account').displayName }}</div>
           <button @click="logout" class="btn btn-danger">Logout</button>
         </div>
       </div>
