@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Build Docker Images') {
             steps {
-                dir('')
+                dir('/')
                     sh 'echo "Running in $(pwd)"'
                     sh 'echo start build the Docker image = $DOCKER_IMAGE'
                     sh 'docker build -t $DOCKER_IMAGE .'
