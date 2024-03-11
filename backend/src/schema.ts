@@ -16,3 +16,8 @@ export const contactReports = pgTable('contact_reports', {
   reporter: serial('user_id').references(() => users.id), // Foreign key reference to users table
   createdAt: timestamp('created_at').defaultNow().notNull()
 })
+
+//เบอร์
+//รายการที่โดนแจ้ง
+//โดยแจ้งเมื่อ
+//

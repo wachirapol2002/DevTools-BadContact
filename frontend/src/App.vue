@@ -24,6 +24,10 @@
             </li>
           </ul>
         </div>
+        <div v-if="this.$cookies.isKey('account')">
+          <!-- <div>DisplayName: {{ this.$cookies.isKey('account').displayName }}</div> -->
+          <button @click="logout" class="btn btn-danger">Logout</button>
+        </div>
       </div>
     </nav>
     <router-view />
@@ -45,6 +49,15 @@ export default {
       }
     }
   },
-  methods: {}
+  methods: {
+    logout() {
+      this.$cookies.keys().forEach((cookie) => this.$cookies.remove(cookie))
+      this.$router.push({ path: '/login' })
+      alert('Logout')
+      setTimeout(() => {
+        window.location.reload()
+      }, 100)
+    }
+  }
 }
 </script>

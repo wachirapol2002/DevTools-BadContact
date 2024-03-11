@@ -34,7 +34,7 @@ authRouter.post('/login', async function login(req, res) {
     process.env.JWT_SECRET!
   )
 
-  res.status(200).json({ message: 'login successful', jwt: jwtString })
+  res.cookie('jwt', jwtString).status(200).json({ message: 'login successful', jwt: jwtString })
 })
 
 export default authRouter

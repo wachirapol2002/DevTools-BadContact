@@ -3,10 +3,16 @@ import express from 'express'
 import contactRouter from './routes/contact.js'
 import userRouter from './routes/user.js'
 import authRouter from './routes/auth.js'
+import cors from 'cors'
 
 const app = express()
 
 app.use(express.json())
+app.use(
+  cors({
+    origin: '*'
+  })
+)
 app.use('/contact', contactRouter)
 app.use('/auth', authRouter)
 app.use('/user', userRouter)

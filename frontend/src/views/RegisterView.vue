@@ -89,7 +89,7 @@
 </template>
 
 <script lang="ts">
-import axios from 'axios'
+import { axiosInstance } from '../client/axios'
 export default {
   name: 'RegisterPage',
   data() {
@@ -126,20 +126,33 @@ export default {
   methods: {
     submit() {
       const data = {
-        email: this.email,
-        password: this.password,
-        confirmPassword: this.confirmPassword,
-        displayName: this.displayName
+        email: 'ww@www.com',
+        password: '123',
+        displayName: 'www'
       }
-      axios
-        .post('http://localhost:3000/user/signup', data)
+      axiosInstance
+        .post('/user/', data)
         .then(() => {
           this.$router.push({ path: '/login' })
           alert('Sign up Success')
+          setTimeout(() => {
+            window.location.reload()
+          }, 100)
         })
         .catch((err) => {
-          alert(err.response.data.details.message)
+          alert(err)
+          console.log(err)
         })
+
+      // axiosInstance
+      //   .post('/user/', data)
+      //   .then(() => {
+      //     alert('Sign up Success')
+      //     this.$router.push({ path: '/login' })
+      //   })
+      //   .catch((err) => {
+      //     alert(err)
+      //   })
     }
   }
 }
