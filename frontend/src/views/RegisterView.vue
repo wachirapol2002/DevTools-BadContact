@@ -152,6 +152,11 @@ export default {
           console.log(err)
         })
     }
+  },
+  mounted() {
+    if (this.$cookies.isKey('account')) {
+      this.$router.push('/')
+    }
   }
 }
 </script>

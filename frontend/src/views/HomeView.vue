@@ -8,11 +8,12 @@
         <div class="container">
           <h1 class="display-4">แอพรายงานหมายเลขโทรศัพท์</h1>
           <p class="lead">รายงานหมายเลขโทรศัพท์ที่ไม่พึงประสงค์</p>
-          <a class="btn btn-primary btn-lg" href="#" role="button">ลงทะเบียน</a>
+          <router-link to="/register" class="btn btn-primary btn-lg">ลงทะเบียน</router-link>
         </div>
       </div>
+
       <div class="container-fluid pt-5">
-        <div class="row">
+        <div class="row d-flex justify-content-center">
           <div class="col-md-4">
             <div class="card">
               <div class="card-body">

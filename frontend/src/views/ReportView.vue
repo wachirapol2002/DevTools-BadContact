@@ -126,6 +126,12 @@ export default {
         return
       }
       let reportReason: string
+      let targetName: string
+      if (this.name.trim() == '') {
+        targetName = 'ไม่ได้ระบุ'
+      } else {
+        targetName = this.name
+      }
       if (this.selectedReportType == 'other') {
         if (this.otherReportType == '') {
           alert('กรุณาระบุหัวข้อรายงาน')
@@ -142,13 +148,14 @@ export default {
       const data = {
         reporterId: this.$cookies.get('account').id,
         phoneNumber: this.phoneNumber,
-        targetName: this.name,
+        targetName: targetName,
         notes: reportReason
       }
       axiosInstance
         .post('/contact/', data)
         .then(() => {
           alert('Report Success')
+          this.$router.push('/search')
         })
         .catch((err) => {
           alert(err)
