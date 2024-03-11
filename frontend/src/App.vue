@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">ระบบรายงาน</a>
+        <a class="navbar-brand" href="http://localhost:8000/login">ระบบรายงาน</a>
         <button
           class="navbar-toggler"
           type="button"
