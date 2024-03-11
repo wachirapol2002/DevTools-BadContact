@@ -62,7 +62,7 @@
 </template>
 
 <script lang="ts">
-import axios from 'axios'
+import { axiosInstance } from '../client/axios'
 export default {
   name: 'LoginPage',
   data() {
@@ -96,27 +96,46 @@ export default {
   methods: {
     submit() {
       const data = {
-        email: this.email,
-        password: this.password
+        email: 'ww@ww.com',
+        password: '123'
       }
-      axios
-        .post('http://localhost:3000/user/login/', data)
-        .then((res) => {
-          const account = {
-            displayName: res.data.account.displayName,
-            permission: res.data.account.permission,
-            firstname: res.data.account.firstname,
-            lastname: res.data.account.lastname,
-            email: res.data.account.email,
-            phone: res.data.account.phone
-          }
-          this.$cookies.set('account', account)
-          alert('Login Success')
-          this.$router.push({ path: '/' })
+      axiosInstance
+        .post('/auth/login', data)
+        .then(() => {
+          this.$cookies.set('account', data)
+          this.$router.push({ path: '/report' })
+          alert('Sign In Success')
+          setTimeout(() => {
+            window.location.reload()
+          }, 100)
         })
-        .catch((error) => {
-          this.error = error.response.data
+        .catch((err) => {
+          alert(err)
+          console.log(err)
         })
+
+      // const data = {
+      //   email: this.email,
+      //   password: this.password
+      // }
+      // axiosInstance
+      //   .post('/auth/login/', data)
+      //   .then((res) => {
+      //     const account = {
+      //       displayName: res.data.account.displayName,
+      //       permission: res.data.account.permission,
+      //       firstname: res.data.account.firstname,
+      //       lastname: res.data.account.lastname,
+      //       email: res.data.account.email,
+      //       phone: res.data.account.phone
+      //     }
+      //     this.$cookies.set('account', account)
+      //     alert('Login Success')
+      //     this.$router.push({ path: '/' })
+      //   })
+      //   .catch((error) => {
+      //     this.error = error.response.data
+      //   })
     }
   }
 }
