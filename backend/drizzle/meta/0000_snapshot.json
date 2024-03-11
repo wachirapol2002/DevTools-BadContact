@@ -1,5 +1,5 @@
 {
-  "id": "cc219c54-aee8-4734-8784-94f65421c418",
+  "id": "40639e17-a561-4fba-bd35-e96ade4fa7cf",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -91,7 +91,7 @@
           "name": "password_hash",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "created_at": {
           "name": "created_at",

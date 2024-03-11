@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import { drizzle } from 'drizzle-orm/node-postgres'
+import { migrate } from 'drizzle-orm/node-postgres/migrator'
 import { Client } from 'pg'
 import * as schema from '../schema'
 
@@ -8,4 +9,8 @@ const client = new Client({
 })
 
 await client.connect()
-export const db = drizzle(client, { schema })
+const db = drizzle(client, { schema })
+
+await migrate(db, { migrationsFolder: 'drizzle' })
+
+export { db }
