@@ -12,10 +12,10 @@ contactRouter.get<null, any, any, { phoneNumber: string }>(
   '/',
   async function findContact(req, res) {
     const phoneNumber = req.query.phoneNumber
-    const contacts = await db
-      .select()
-      .from(contactReports)
-      .where(like(contactReports.phoneNumber, `%${phoneNumber}%`))
+    const contacts = await db.query.contactReports
+      .findMany({
+        where: like(contactReports.phoneNumber, `%${phoneNumber}%`)
+      })
       .execute()
 
     if (contacts.length === 0) {
