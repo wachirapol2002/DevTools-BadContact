@@ -11,7 +11,7 @@ app.use('/contact', contactRouter)
 app.use('/auth', authRouter)
 app.use('/user', userRouter)
 
-const port = process.env.PORT ? process.env.PORT : 3000
+const port = process.env.PORT ? process.env.PORT : 8086
 
 app.listen(port, () => {
   console.log('Server is running on port ' + port)
