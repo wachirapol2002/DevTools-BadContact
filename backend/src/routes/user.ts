@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { db } from '../clients/drizzle'
-import { users } from '../schema'
+import { db } from '../clients/drizzle.js'
+import { users } from '../schema.js'
 import { hashSync } from 'bcrypt'
 
 const userRouter = Router()
