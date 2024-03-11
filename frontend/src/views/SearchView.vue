@@ -17,7 +17,7 @@
           />
         </div>
         <div class="col-3">
-          <button @click="checkHistory" class="btn btn-primary">ตรวจสอบ</button>
+          <button @click="searchReport" class="btn btn-primary">ตรวจสอบ</button>
         </div>
       </div>
       <div
@@ -31,18 +31,56 @@
         class="bg-light border border-dark rounded-bottom p-3"
         style="width: 80vw; min-height: 200px"
       >
-        <button @click="checkHistory" class="btn btn-primary">ตรวจสอบ</button>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>เบอร์โทร</th>
+              <th>บุคคลที่คาดว่าเป็นเจ้าของเบอร์</th>
+              <th>รายการที่แจ้ง</th>
+              <th>บุคคลที่แจ้ง</th>
+              <th>เวลาที่แจ้ง</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr v-for="(item, index) in phoneReport" :key="index">
+              <td>{{ item.phoneNumber }}</td>
+              <td>{{ item.ownerPerson }}</td>
+              <td>{{ item.reportType }}</td>
+              <td>{{ item.reportPerson }}</td>
+              <td>{{ item.reportTime }}</td>
+            </tr> -->
+            <!-- test -->
+            <tr>
+              <td>099999999</td>
+              <td>Superman</td>
+              <td>เก่งเกิน</td>
+              <td>Batman</td>
+              <td>now</td>
+            </tr>
+            <tr>
+              <td>199999999</td>
+              <td>Batman</td>
+              <td>รวยเกิน</td>
+              <td>Superman</td>
+              <td>1 min</td>
+            </tr>
+            <!-- test -->
+          </tbody>
+        </table>
       </div>
     </div>
   </main>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'SearchPage',
   data() {
     return {
       previousRoutes: [],
+      phoneReport: [],
+      phoneNumber: '',
+      account: this.$cookies.get('account'),
       center: {
         'd-flex': true,
         'justify-content-center': true,
@@ -64,6 +102,17 @@ export default {
       }
     }
   },
-  methods: {}
+  methods: {
+    searchReport() {
+      // โค้ดดึงข้อมูลจาก SQL ตรงนี้
+      // ตัวอย่าง:
+      // axios.get('.......').then(response => {
+      //   this.phoneReport = response.data;
+      // });
+    }
+  },
+  mounted() {
+    this.searchReport()
+  }
 }
 </script>

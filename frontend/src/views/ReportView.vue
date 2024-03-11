@@ -1,7 +1,7 @@
 <template>
   <main style="background-image: linear-gradient(gray, white)">
     <div
-      class="container-fluid d-flex flex-column justify-content-center align-items-center"
+      class="container-fluid d-flex flex-column justify-content-center align-items-center p-3"
       style="height: 100vh"
     >
       <div
@@ -15,7 +15,7 @@
         class="bg-light border border-dark rounded-bottom p-3"
         style="width: 650px; height: 800px"
       >
-        <form class="" @submit.prevent="submitForm">
+        <form>
           <div class="was-validated" :class="formRow">
             <label :class="label" for="phoneNumber">หมายเลขโทรศัพท์: </label>
             <div class="col-9">
@@ -77,7 +77,7 @@
             </div>
           </div>
           <div class="text-center">
-            <button type="submit" class="btn btn-primary">ส่งรายงาน</button>
+            <div class="btn btn-primary" @click="submit()">ส่งรายงาน</div>
           </div>
         </form>
       </div>
@@ -85,14 +85,18 @@
   </main>
 </template>
 
-<script>
+<script lang="ts">
+import axios from 'axios'
 export default {
   name: 'ReportPage',
   data() {
     return {
       previousRoutes: [],
+      phoneNumber: '',
+      name: '',
       selectedReportType: '',
       otherReportType: '',
+      user: '',
       center: {
         'd-flex': true,
         'justify-content-center': true,
@@ -114,6 +118,24 @@ export default {
       }
     }
   },
-  methods: {}
+  methods: {
+    submit() {
+      const data = {
+        user: this.user,
+        phoneNumber: this.phoneNumber,
+        selectedReportType: this.selectedReportType,
+        otherReportType: this.otherReportType
+      }
+      axios
+        .post('http://localhost:3000/user/signup', data)
+        .then(() => {
+          this.$router.push({ path: '/login' })
+          alert('Sign up Success')
+        })
+        .catch((err) => {
+          alert(err.response.data.details.message)
+        })
+    }
+  }
 }
 </script>
