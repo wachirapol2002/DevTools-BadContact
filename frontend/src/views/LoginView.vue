@@ -96,8 +96,8 @@ export default {
   methods: {
     submit() {
       const data = {
-        email: 'ww@ww.com',
-        password: '123'
+        email: this.email,
+        password: this.password
       }
       axiosInstance
         .post('/auth/login', data)
