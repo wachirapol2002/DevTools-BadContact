@@ -109,9 +109,6 @@ export default {
   },
   mounted() {
     this.searchReport()
-    if (!this.$cookies.isKey('account')) {
-      this.$router.push('/login')
-    }
   }
 }
 </script>
