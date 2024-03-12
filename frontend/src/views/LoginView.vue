@@ -112,7 +112,7 @@ export default {
             displayName: res.data.account.displayName
           }
           this.$cookies.set('account', account)
-          this.$router.push({ path: '/report' })
+          this.$router.push({ path: '/' })
           alert('Sign In Success')
           setTimeout(() => {
             window.location.reload()
